@@ -27,8 +27,10 @@ function App() {
 
   return (
     <>
-     <Grid p={50} h='100vh'>
-        <Grid overflowY='scroll' rowGap={12}>
+    <Text textAlign='center' fontSize={28} fontWeight='700' textDecoration='underline'>Comment Box</Text>
+    <Text textAlign='center'textDecoration='underline'>Make unlimited reply to any Comment</Text>
+     <Grid p={1} h='100vh' w='100%'>
+        <Grid overflowY='scroll' rowGap={12} placeItems='center'>
            {
             commentsarray.map(i=>(
               <Comments key={i} i={i}/>
@@ -47,15 +49,18 @@ const[trackInputChange,setTrackInputChange]=useState('');
 const[replyArray,setReplyArray]=useState([])
   return(
     <>
+  
     {
       (display=='hide'?(
-        <Grid w='97%'>
+        <Grid w='97%' textAlign='left' boxShadow='rgba(99, 99, 99, 0.2) 0px 2px 8px 0px' p={2} borderRadius={10}>
           <Text>{i}</Text>
           <Button color='blue' ml={5} w='7%'  bg='white' onClick={()=>{
             setDisplay('on')
           }}>{`${reply} replies`}</Button>
         </Grid>
-      ):(
+      )
+      :
+      (
         <Grid h='80vh'>
            <Button w='12%' onClick={()=>{setDisplay('hide')}}>close</Button>
             <Text fontWeight='700'>{`Comment : ${i}`}</Text>
@@ -83,7 +88,7 @@ const[replyArray,setReplyArray]=useState([])
               
               replyArray.map(i=>(
                 <>
-                  <Text ml={100}>{`user${Math.random().toFixed(0)+Math.random().toFixed(0)} : ${i}`}</Text>
+                  <Text  ml={['10','10','10','100']}>{`user${Math.random().toFixed(0)+Math.random().toFixed(0)} : ${i}`}</Text>
                  
                 </>
               ))}
@@ -106,6 +111,7 @@ const[replyArray,setReplyArray]=useState([])
         </Grid>
       ))
     }
+
     </>
   )
 }
