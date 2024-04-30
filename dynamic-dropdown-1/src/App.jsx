@@ -29,7 +29,7 @@ const onlyCountriesName=contriesarray.map(i=>(
 
   return (
     <>
-    <select style={{width:'30%'}} onChange={(e)=>{setCountry(e.target.value)}}>
+    <select style={{height:'8vh',width:'50%',fontSize:'21px'}} onChange={(e)=>{setCountry(e.target.value)}}>
       {
         onlyCountriesName.map(i=>(
           <option key={i} value={i}>{i}</option>
@@ -51,7 +51,7 @@ let selected_country_index= array.filter(i=>(
 
   return(
     <>
-    <select>
+    <select style={{height:'8vh',width:'50%',fontSize:"21px"}}>
     {
         selected_country_index[0].cities.map(i=>(
           <option key={i} value={i}>{i}</option>
