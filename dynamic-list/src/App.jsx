@@ -1,9 +1,9 @@
-import { useState ,useEffect} from 'react'
+import { useState} from 'react'
 
 import './App.css'
 
 function App() {
-  const [task,setTask] = useState('')
+
   const[array,setArray]=useState([
     'Play Cricket',
     'Play Football',
@@ -17,20 +17,14 @@ function App() {
    ])
 
 
-useEffect(()=>{
-let ar=[...array];
-let filtered_for_delete= ar.filter(i=>(
-  i!==task
-))
-setArray(filtered_for_delete)
-},[task])
+
 
   return (
     <>
       <ul>
        {
         array.map(i=>(
-          <List key={i} i={i} task={task} setTask={setTask}/>
+          <List key={i} i={i} array={array} setArray={setArray}/>
         ))
        }
       </ul>
@@ -38,7 +32,7 @@ setArray(filtered_for_delete)
   )
 }
 
-const List = ({i,task,setTask})=>{
+const List = ({i,array,setArray})=>{
 
   const[display,setDisplay]=useState('hide')
 
@@ -52,9 +46,14 @@ const List = ({i,task,setTask})=>{
         </div>
       ):(
         <div style={{display:'flex',gap:'5px',alignItems:'center'}}>
+        <input type="checkbox" checked onClick={()=>{setDisplay('hide')}}/>
         <p>{i}</p>
         <button style={{height:'5vh'}} onClick={()=>{
-          setTask(i)
+            let ar=[...array];
+            let filtered=ar.filter(item=>(
+               item!==i
+            ))
+            setArray(filtered)
         }}>Remove</button>
         </div>
       ))

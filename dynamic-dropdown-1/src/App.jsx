@@ -9,7 +9,7 @@ const contriesarray=[
   {
     name:'India',
     value:'IN',
-    cities:['Brindavan','Delhi','Kolkata',"Mumbai",'Gujrat']
+    cities:['Brindavan','Delhi','Kolkata',"Mumbai",'Gujrat'],
   },
   {
     name:'USA',
