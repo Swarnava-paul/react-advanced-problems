@@ -10,4 +10,25 @@
 2. Dynamic Behave.
 </h2>
 </br></br>
-<h4>Tech Stack: React js (A popular Javascript Library) , Norman css</h4>
+<h4>Tech Stack: React js (A popular Javascript Library) , css</h4>
+
+
+<h1>Some Project Images ...</h1>
+</br></br>
+<h2>Initial</h2>
+<img src="https://i.ibb.co/ZBvP9CR/initial.png" alt="initial"/>
+</br></br>
+<h2>Basic details form filled</h2>
+<img src="https://i.ibb.co/PG2Zmry/filled.png" alt="filled">
+</br></br>
+<h2>Password Eye clicked password visible</h2>
+<img src="https://i.ibb.co/s5rzBL1/password-view.png" alt="password-view">
+</br></br>
+<h2>After Basic details filled</h2>
+<img src="https://i.ibb.co/cQZCQtn/afterbasicdetails.png" alt="afterbasicdetails">
+</br></br>
+<h2>After Phone number Filled</h2>
+<img src="https://i.ibb.co/g4VLrGn/afterphonenumberfilled.png" alt="afterphonenumberfilled">
+</br></br>
+<h2>After Payment</h2>
+<img src="https://i.ibb.co/vzQf8wW/afterpayment.png" alt="afterpayment">
