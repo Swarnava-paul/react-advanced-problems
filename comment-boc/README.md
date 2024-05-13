@@ -24,7 +24,7 @@ Replies to any Comment</h3>
 <h1>Some Project Images</h1>
 
 </br>
-<h2>State after some Replies add to some comments</h2>
+<h2>Initial Load of All comments</h2>
 <img src="https://i.ibb.co/548G0jW/Screenshot-2024-05-13-121244.png"alt="Screenshot-2024-05-13-121244">
 </br></br>
 <h2>After Reply button clicked</h2>
