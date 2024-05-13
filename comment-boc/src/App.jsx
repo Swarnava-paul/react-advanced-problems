@@ -64,7 +64,7 @@ const[replyArray,setReplyArray]=useState([])// add replies in form of array of e
       :
       (
         <Grid position='absolute' top='0%' w='100%' h='100%' placeItems='center'  className='opacity'>
-        <Grid h='80vh' mt='-3%' w={['90%','90%','80%','80%']} bg='white'  borderRadius={11}>
+        <Grid h='89vh' pb={3} mt='-3%' w={['90%','90%','80%','80%']} bg='white'  borderRadius={11}>
            <Button w='5%' onClick={()=>{setDisplay('hide')}} borderTopLeftRadius={11} fontSize={25} bg='white'><i className="fa-solid fa-xmark"></i></Button>
            {/** click on above button set the display state initial hide */}
             
