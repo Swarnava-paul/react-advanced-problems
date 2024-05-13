@@ -54,11 +54,11 @@ const[replyArray,setReplyArray]=useState([])// add replies in form of array of e
   
     {
       (display=='hide'?(
-        <Grid w='97%' textAlign='left' boxShadow='rgba(99, 99, 99, 0.2) 0px 2px 8px 0px' p={2} borderRadius={10}>
+        <Grid w='97%' textAlign='left' boxShadow='rgba(99, 99, 99, 0.2) 0px 2px 8px 0px' p={2} borderRadius={10} onClick={()=>{
+          setDisplay('on')
+        }}>
           <Text>{i}</Text>
-          <Button color='blue' ml={5} w='7%' pos='static'  bg='white' onClick={()=>{
-            setDisplay('on')
-          }}>{`${reply} replies`}</Button> {/**initial state display will change */}
+          <Button color='blue' ml={5} w='7%' pos='static'  bg='white'>{`${reply} replies`}</Button> {/**initial state display will change */}
         </Grid>
       )// initial return ui
       :
