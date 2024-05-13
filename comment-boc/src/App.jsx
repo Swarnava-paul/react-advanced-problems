@@ -29,7 +29,9 @@ function App() {
     <>
     <Text textAlign='center' fontSize={28} fontWeight='700' textDecoration='underline'>Comment Box</Text>
     <Text textAlign='center'textDecoration='underline'>Make unlimited reply to any Comment</Text>
-     <Grid p={1} h='100vh' w='100%'>
+
+
+<Grid p={1} h='100vh' w='100%'>
         <Grid overflowY='scroll' rowGap={12} placeItems='center'>
            {
             commentsarray.map(i=>(
@@ -37,7 +39,8 @@ function App() {
             ))
            }
         </Grid>
-     </Grid>
+ </Grid>
+     
     </>
   )
 }
@@ -54,21 +57,25 @@ const[replyArray,setReplyArray]=useState([])
       (display=='hide'?(
         <Grid w='97%' textAlign='left' boxShadow='rgba(99, 99, 99, 0.2) 0px 2px 8px 0px' p={2} borderRadius={10}>
           <Text>{i}</Text>
-          <Button color='blue' ml={5} w='7%'  bg='white' onClick={()=>{
+          <Button color='blue' ml={5} w='7%' pos='static'  bg='white' onClick={()=>{
             setDisplay('on')
           }}>{`${reply} replies`}</Button>
         </Grid>
       )
       :
       (
-        <Grid h='80vh'>
-           <Button w='12%' onClick={()=>{setDisplay('hide')}}>close</Button>
-            <Text fontWeight='700'>{`Comment : ${i}`}</Text>
+        <Grid position='absolute' top='0%' w='100%' h='100%' placeItems='center'  className='opacity'>
+        <Grid h='80vh' mt='-3%' w={['90%','90%','80%','80%']} bg='white'  borderRadius={11}>
+           <Button w='5%' onClick={()=>{setDisplay('hide')}} borderTopLeftRadius={11} fontSize={25} bg='white'><i className="fa-solid fa-xmark"></i></Button>
+            
+            <Box w='90%' margin='auto'>
+            <Text fontWeight='700'  fontStyle='italic' fontSize={20} color='blue'>{` ${i}`}</Text>
+            </Box>
 
            {
             (replyArray.length==0?(
-             <Flex align='center'>
-              <input type="text" value={trackInputChange} style={{outline:'none',border:'1px solid black',width:'90%',height:'6vh'}} onChange={(e)=>{
+             <Flex align='center' justify='center'>
+              <input type="text" value={trackInputChange} style={{outline:'none',border:'1px solid black',width:'60%',height:'6vh'}} onChange={(e)=>{
                 setTrackInputChange(e.target.value)
               }} />
               <Button onClick={()=>{
@@ -76,26 +83,26 @@ const[replyArray,setReplyArray]=useState([])
                 ar.push(trackInputChange);
                 setReplyArray(ar)
                 setReply(ar.length)
-              }}>post reply</Button>
+              }} bg='black' color='white' borderRadius='0px' borderTopRightRadius={4} borderBottomRightRadius={4} _hover={{bg:"black"}} h='6vh'>post reply</Button>
              </Flex>
           ):(
             <>
           
           {
-            <Grid  overflowY='scroll' h='55vh' mt={3} rowGap={7}>
-              <Text color='blue' fontWeight='700'>All Replies</Text>
+            <Grid  overflowY='scroll' h='45vh' mt={3} rowGap={10}>
+              <Text color='black' fontWeight='700' ml={3}>All Replies</Text>
               {
               
               replyArray.map(i=>(
                 <>
-                  <Text  ml={['10','10','10','100']}>{`user${Math.random().toFixed(0)+Math.random().toFixed(0)} : ${i}`}</Text>
+                  <Text fontSize={19} ml={['10','10','10','100']}>{`user${Math.random().toFixed(0)+Math.random().toFixed(0)} : ${i}`}</Text>
                  
                 </>
               ))}
               </Grid>
           }
-               <Flex align='center'>
-              <input type="text" value={trackInputChange} style={{outline:'none',border:'1px solid black',width:'90%',height:'6vh'}} onChange={(e)=>{
+               <Flex justify='center' align='center' >
+              <input type="text" value={trackInputChange} style={{outline:'none',border:'1px solid black',width:'60%',height:'6vh'}} onChange={(e)=>{
                 setTrackInputChange(e.target.value)
               }} />
               <Button onClick={()=>{
@@ -103,11 +110,14 @@ const[replyArray,setReplyArray]=useState([])
                 ar.push(trackInputChange);
                 setReplyArray(ar)
                 setReply(ar.length)
-              }}>post reply</Button>
+              }} bg='black' color='white' borderRadius='0px' borderTopRightRadius={4} borderBottomRightRadius={4} _hover={{bg:"black"}} h='6vh'>post reply</Button>
              </Flex>
           </>
           ))
            }
+           
+        </Grid>
+
         </Grid>
       ))
     }
@@ -115,5 +125,7 @@ const[replyArray,setReplyArray]=useState([])
     </>
   )
 }
+
+
 
 export default App
