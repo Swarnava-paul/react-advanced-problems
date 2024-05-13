@@ -27,6 +27,9 @@ Replies to any Comment</h3>
 <h2>Initial Load of All comments</h2>
 <img src="https://i.ibb.co/548G0jW/Screenshot-2024-05-13-121244.png"alt="Screenshot-2024-05-13-121244">
 </br></br>
+<h2>After some replies added to some Comments</h2>
+<img src="https://i.ibb.co/nr9PX66/Screenshot-2024-05-13-121325.png" alt="Screenshot-2024-05-13-121325"/>
+</br></br>
 <h2>After Reply button clicked</h2>
 </br></br>
 <img src="https://i.ibb.co/N1tFqCN/Screenshot-2024-05-13-121339.png" alt="Screenshot-2024-05-13-121339">
