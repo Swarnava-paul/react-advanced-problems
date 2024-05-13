@@ -7,7 +7,6 @@ import './App.css'
 import {Grid,Text,Box,Button,Flex} from '@chakra-ui/react'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   const commentsarray=[
     'Oh hi there, I am Mila Acuna, I am glad that you came here. I was living in San Marino, however now I live in Alekseyevka',
@@ -48,8 +47,8 @@ function App() {
 const Comments =  ({i})=>{
 const[reply,setReply]=useState(0);
 const[display,setDisplay]=useState('hide');
-const[trackInputChange,setTrackInputChange]=useState('');
-const[replyArray,setReplyArray]=useState([])
+const[trackInputChange,setTrackInputChange]=useState('');// track the inputed value
+const[replyArray,setReplyArray]=useState([])// add replies in form of array of elements
   return(
     <>
   
@@ -59,24 +58,25 @@ const[replyArray,setReplyArray]=useState([])
           <Text>{i}</Text>
           <Button color='blue' ml={5} w='7%' pos='static'  bg='white' onClick={()=>{
             setDisplay('on')
-          }}>{`${reply} replies`}</Button>
+          }}>{`${reply} replies`}</Button> {/**initial state display will change */}
         </Grid>
-      )
+      )// initial return ui
       :
       (
         <Grid position='absolute' top='0%' w='100%' h='100%' placeItems='center'  className='opacity'>
         <Grid h='80vh' mt='-3%' w={['90%','90%','80%','80%']} bg='white'  borderRadius={11}>
            <Button w='5%' onClick={()=>{setDisplay('hide')}} borderTopLeftRadius={11} fontSize={25} bg='white'><i className="fa-solid fa-xmark"></i></Button>
+           {/** click on above button set the display state initial hide */}
             
             <Box w='90%' margin='auto'>
             <Text fontWeight='700'  fontStyle='italic' fontSize={20} color='blue'>{` ${i}`}</Text>
-            </Box>
+            </Box> {/** main comment holder Box */}
 
            {
             (replyArray.length==0?(
              <Flex align='center' justify='center'>
               <input type="text" value={trackInputChange} style={{outline:'none',border:'1px solid black',width:'60%',height:'6vh'}} onChange={(e)=>{
-                setTrackInputChange(e.target.value)
+                setTrackInputChange(e.target.value)// track the inputed value 
               }} />
               <Button onClick={()=>{
                 let ar=[...replyArray];
@@ -84,8 +84,11 @@ const[replyArray,setReplyArray]=useState([])
                 setReplyArray(ar)
                 setReply(ar.length)
               }} bg='black' color='white' borderRadius='0px' borderTopRightRadius={4} borderBottomRightRadius={4} _hover={{bg:"black"}} h='6vh'>post reply</Button>
+              {/**on click on post reply button add the already tracked value to the setReplyArray with all existing replies to that comment */}
              </Flex>
-          ):(
+          )// based on replyArray if length of replyArray is 0 that means there are no replies 
+          :
+          (
             <>
           
           {
@@ -113,13 +116,13 @@ const[replyArray,setReplyArray]=useState([])
               }} bg='black' color='white' borderRadius='0px' borderTopRightRadius={4} borderBottomRightRadius={4} _hover={{bg:"black"}} h='6vh'>post reply</Button>
              </Flex>
           </>
-          ))
+          )) // if length of replyArray is more than 0 that means reply is there
            }
            
         </Grid>
 
         </Grid>
-      ))
+      ))// display state changed to on
     }
 
     </>
