@@ -1,8 +1,34 @@
-# React + Vite
+<h1>Comment Box in React</h1>
+</br></br>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<h2>Description</h2>
+</br>
+<h3>Comment Box made with React (A Famous Javascript Library) you can make Unlimited
+Replies to any Comment</h3>
+</br></br>
+<label for='features'>Features</label>
+<ul id='features'>
+<li>Responsive UI</li>
+<li>Efficient State management with React Hooks</li>
+<li>Full scalable Conditional Rendering based UI components</li>
+<li>Well Commented Code</li>
+</ul>
 
-Currently, two official plugins are available:
+</br></br>
+<label for='techs'>Technology Used In</label>
+<ul id='techs'>
+<li>React</li>
+<li>Chakra UI</li>
+</ul>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<h1>Some Project Images</h1>
+
+</br>
+<h2>State after some Replies add to some comments</h2>
+<img src="https://i.ibb.co/548G0jW/Screenshot-2024-05-13-121244.png"alt="Screenshot-2024-05-13-121244">
+</br></br>
+<h2>After Reply button clicked</h2>
+</br></br>
+<img src="https://i.ibb.co/N1tFqCN/Screenshot-2024-05-13-121339.png" alt="Screenshot-2024-05-13-121339">
+
+

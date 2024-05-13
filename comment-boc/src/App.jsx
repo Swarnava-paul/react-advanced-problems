@@ -92,16 +92,17 @@ const[replyArray,setReplyArray]=useState([])// add replies in form of array of e
             <>
           
           {
-            <Grid  overflowY='scroll' h='45vh' mt={3} rowGap={10}>
+            <Grid  overflowY='scroll' h='45vh' mt={3} rowGap={10} >
               <Text color='black' fontWeight='700' ml={3}>All Replies</Text>
               {
               
               replyArray.map(i=>(
-                <>
-                  <Text fontSize={19} ml={['10','10','10','100']}>{`user${Math.random().toFixed(0)+Math.random().toFixed(0)} : ${i}`}</Text>
-                 
-                </>
-              ))}
+               <>
+
+                  <Text fontSize={19} ml={['10','10','10','20']}>{`user${Math.random().toFixed(0)+Math.random().toFixed(0)} : ${i}`}</Text>
+               </>
+              ))
+              }
               </Grid>
           }
                <Flex justify='center' align='center' >
