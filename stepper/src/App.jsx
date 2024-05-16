@@ -1,26 +1,30 @@
-import { useState } from 'react'
+import { useState,useContext } from 'react'
 import { Flex,Grid,Button,Input} from '@chakra-ui/react'
 import './App.css'
 
+
+// context 
+import { component_determine_context } from './context/component-context'
 function App() {
- 
-  const[stepper,setStepper]=useState('details-filling')
-  const[backgroundColor,setBackgroundColor]=useState([])
+
+  const{component}=useContext(component_determine_context)
+  
   return (
     <>
-
-    <Stepper backgroundColor={backgroundColor}/>
+     <Stepper/>
     {
-      ( stepper=='details-filling'?(<Details_filling setStepper={setStepper} backgroundColor={backgroundColor} setBackgroundColor={setBackgroundColor}/>):
-      stepper=='register-phone'?(<Register_phone setStepper={setStepper} backgroundColor={backgroundColor} setBackgroundColor={setBackgroundColor}/>):
-      stepper=='payment'?(<Payment setStepper={setStepper} backgroundColor={backgroundColor} setBackgroundColor={setBackgroundColor}/>):(<Completed  setStepper={setStepper}/>)
-      )
+      component.component
     }
     </>
   )
 }
 
-const Details_filling=({setStepper,backgroundColor,setBackgroundColor})=>{
+export const Details_filling=()=>{
+
+  //context
+  
+  const{dispatch}=useContext(component_determine_context)
+
   const[password,setPassword]=useState('password')
 
   const input_style={
@@ -46,16 +50,19 @@ const Details_filling=({setStepper,backgroundColor,setBackgroundColor})=>{
       </Flex>
 
      <Button onClick={()=>{
-      setStepper('register-phone')
-      let ar=[...backgroundColor]
-      ar.push('green');
-      setBackgroundColor(ar)
+
+     dispatch({type:'details-filling-coompleted'})
+
      }} border="none" backgroundColor="black"color="white" width={input_style.width} height="7vh" borderRadius="10px" fontSize='16px'>Next</Button>
      </div>
     </>
   )
 }
-const Register_phone=({setStepper,backgroundColor,setBackgroundColor})=>{
+export const Register_phone=()=>{
+
+  //context
+  const{dispatch}=useContext(component_determine_context)
+
 
   const button_style={
     backgroundColor:"black",
@@ -74,16 +81,12 @@ const Register_phone=({setStepper,backgroundColor,setBackgroundColor})=>{
     <Input type="number" border="1px solid black"outline="none"width={['80%','70%','60%','30%']} height="7vh" placeholder='Enter Mobile Number'/>
     <Flex marginTop="10px" gap="6px" width={['80%','80%','70%','50%']} justifyContent="center">
     <button onClick={()=>{
-      setStepper('details-filling')
-      let ar=[...backgroundColor];
-      ar.pop()
-      setBackgroundColor(ar)
+      dispatch({type:"previous-from-register-phone"})
     }} style={button_style}>Previous</button>
     <button onClick={()=>{
-     setStepper('payment')
-     let ar=[...backgroundColor]
-     ar.push('green');
-     setBackgroundColor(ar)
+
+      dispatch({type:"register-phone-completed"})
+
     }} style={button_style}>Next</button>
     </Flex>
     </div>
@@ -91,7 +94,11 @@ const Register_phone=({setStepper,backgroundColor,setBackgroundColor})=>{
   )
 }
 
-const Payment=({setStepper,backgroundColor,setBackgroundColor})=>{
+export const Payment=()=>{
+
+  //context
+  const{dispatch}=useContext(component_determine_context)
+
 
   return(
     <>
@@ -100,16 +107,13 @@ const Payment=({setStepper,backgroundColor,setBackgroundColor})=>{
     <div style={{width:"100%",margin:"auto",display:"flex",justifyContent:"center",marginTop:"10px"}}>
 
     <Button onClick={()=>{
-      setStepper('completed')
-      let ar=[...backgroundColor]
-      ar.push('green')
-      setBackgroundColor(ar)
+      dispatch({type:"payment-completed"})
     }} fontSize="16px"borderRadius="5px" height="7vh" border="none" backgroundColor="black" color="white" width={['50%','30%','20%','20%']}>Pay</Button>
     </div>
     </>
   )
 }
-const Completed=()=>{
+export const Completed=()=>{
 
   return(
     <>
@@ -118,8 +122,10 @@ const Completed=()=>{
   )
 }
 
-const Stepper=({backgroundColor})=>{
+const Stepper=()=>{
 
+  const{component}=useContext(component_determine_context)
+  const backgroundColor=component.backgroundColor;
 
   return(
     <>
