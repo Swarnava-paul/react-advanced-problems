@@ -1,11 +1,12 @@
 import { useReducer } from "react";
 
 import { createContext } from "react";
-import { Details_filling } from "../App";
-import { Register_phone } from "../App";
-import { Payment } from "../App";
-import { Completed } from "../App";
+import { Details_filling } from "../components/details-filling";
+import { Register_phone } from "../components/registerphone";
+import { Payment } from "../components/payment";
+import { Completed } from "../components/completed";
 import { background } from "@chakra-ui/react";
+
 export const component_determine_context = createContext('')
 
 function determine_component(component,action){

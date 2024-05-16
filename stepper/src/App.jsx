@@ -5,6 +5,7 @@ import './App.css'
 
 // context 
 import { component_determine_context } from './context/component-context'
+
 function App() {
 
   const{component}=useContext(component_determine_context)
@@ -19,108 +20,6 @@ function App() {
   )
 }
 
-export const Details_filling=()=>{
-
-  //context
-  
-  const{dispatch}=useContext(component_determine_context)
-
-  const[password,setPassword]=useState('password')
-
-  const input_style={
-    outline:'none',
-    border:"1px solid black",
-    width:['80%','70%','40%','30%'],
-    height:"7vh",
-    borderRadius:"5px"
-  }
-  return(
-    <>
-    
-    <div style={{display:"grid",placeItems:"center",rowGap:"19px",marginTop:"20px"}}>
-    <p style={{textAlign:'center',fontSize:"24px",fontWeight:"700"}}>Details Filling</p>
-
-      <Input type="text" sx={input_style} placeholder='Enter Name'/>
-      <Input type="email" sx={input_style} placeholder='Enter Email'/>
-      <Flex p={2} width={input_style.width} height={input_style.height} justifyContent="space-evenly" alignItems="center" border="1px solid black" borderRadius="5px">
-      <Input variant='unstyled'  placeholder='Enter Password' type={password}  />
-      <i onClick={()=>{
-        setPassword(password=='password'?'text':'password')
-      }} className={password=='password'?"fa-solid fa-eye-slash":'fa-solid fa-eye'}></i>
-      </Flex>
-
-     <Button onClick={()=>{
-
-     dispatch({type:'details-filling-coompleted'})
-
-     }} border="none" backgroundColor="black"color="white" width={input_style.width} height="7vh" borderRadius="10px" fontSize='16px'>Next</Button>
-     </div>
-    </>
-  )
-}
-export const Register_phone=()=>{
-
-  //context
-  const{dispatch}=useContext(component_determine_context)
-
-
-  const button_style={
-    backgroundColor:"black",
-    color:"white",
-    borderRadius:"5px",
-    border:"none",
-    height:"7vh",
-    width:"30%",
-    fontSize:"16px"
-
-  }
-  return(
-    <>
-    <div style={{display:"grid",placeItems:"center",rowGap:"10px",marginTop:"20px"}}>
-    <p style={{textAlign:'center',fontSize:"24px",fontWeight:"700"}}>Register Phone</p>
-    <Input type="number" border="1px solid black"outline="none"width={['80%','70%','60%','30%']} height="7vh" placeholder='Enter Mobile Number'/>
-    <Flex marginTop="10px" gap="6px" width={['80%','80%','70%','50%']} justifyContent="center">
-    <button onClick={()=>{
-      dispatch({type:"previous-from-register-phone"})
-    }} style={button_style}>Previous</button>
-    <button onClick={()=>{
-
-      dispatch({type:"register-phone-completed"})
-
-    }} style={button_style}>Next</button>
-    </Flex>
-    </div>
-    </>
-  )
-}
-
-export const Payment=()=>{
-
-  //context
-  const{dispatch}=useContext(component_determine_context)
-
-
-  return(
-    <>
-        <p style={{textAlign:'center',fontSize:"24px",fontWeight:"700",marginTop:"20px"}}>Payment</p>
-
-    <div style={{width:"100%",margin:"auto",display:"flex",justifyContent:"center",marginTop:"10px"}}>
-
-    <Button onClick={()=>{
-      dispatch({type:"payment-completed"})
-    }} fontSize="16px"borderRadius="5px" height="7vh" border="none" backgroundColor="black" color="white" width={['50%','30%','20%','20%']}>Pay</Button>
-    </div>
-    </>
-  )
-}
-export const Completed=()=>{
-
-  return(
-    <>
-    <p style={{textAlign:'center',fontSize:"24px",fontWeight:"700",marginTop:"30px"}}>Thanks For showing your interest</p>
-    </>
-  )
-}
 
 const Stepper=()=>{
 
