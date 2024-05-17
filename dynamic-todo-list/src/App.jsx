@@ -4,9 +4,10 @@ import { useState } from 'react'
 
 import './App.css'
 
-import {Flex,Input,Button,Grid} from '@chakra-ui/react'
+import {Flex,Input,Button,Grid,Select} from '@chakra-ui/react'
 
 function App() {
+  const[mainTaskDataHolder,setMainTaskDataHolder]=useState([])
   const[trackInputChange,setTrackInputChange]=useState('')
   const[task,setTask] = useState([])
 
@@ -17,10 +18,37 @@ function App() {
             setTrackInputChange(event.target.value)
          }}/>
           <Button bg='black' color='white' _hover={{color:"white"}} onClick={()=>{
-            let existingTask=[...task];
+            let existingTask=[...mainTaskDataHolder];
             existingTask.push({taskName:trackInputChange,status:'pending'});
+            setMainTaskDataHolder(existingTask)
             setTask(existingTask)
           }}>Add Task</Button>
+
+          <Select variant='filled' placeholder='Filter by Completion Status' w='30%' onChange={(event)=>{
+            if(event.target.value=='Show-Pending-Tasks'){
+              let tasks=[...mainTaskDataHolder];
+              let filtered_BySelect_Value= tasks.filter(item=>(
+                item.status=='pending'
+              ))
+              setTask(filtered_BySelect_Value)
+            }
+            else if(event.target.value=='Show-Completed-Tasks'){
+              let tasks=[...mainTaskDataHolder];
+              let filtered_BySelect_Value = tasks.filter(item=>(
+                item.status=='completed'
+              ))
+              setTask(filtered_BySelect_Value)
+            }
+            else{
+              let tasks=[...mainTaskDataHolder];
+              setTask(tasks)
+            }
+          }}>
+          <option value="show-all">Show All Tasks</option>
+          <option value='Show-Pending-Tasks' style={{color:"#FF6500",fontWeight:"600"}}>Show Pending Tasks</option>
+          <option value='Show-Completed-Tasks' style={{color:"lightseagreen",fontWeight:"600"}}>Show Completed Tasks</option>
+         </Select>
+
       </Flex> {/** this flex holds input for enter task name and add task button */}
 
       <Grid templateColumns='repeat(3,30%)' columnGap={10} mt={10} rowGap={10} justifyContent='center'>
