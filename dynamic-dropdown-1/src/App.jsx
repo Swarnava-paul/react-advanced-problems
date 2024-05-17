@@ -5,6 +5,7 @@ import './App.css'
 
 function App() {
   const [country,setCountry] = useState('India')
+  
 const contriesarray=[
   {
     name:'India',

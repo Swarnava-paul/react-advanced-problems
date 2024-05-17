@@ -63,6 +63,7 @@ const Task_display=({EachTask,task,setTask})=>{
       ):(
         <>
        <p>{EachTask.taskName}</p>
+       <Flex gap={3} mt={2}>
         <Button onClick={()=>{
            let taskArray=[...task];
            let desired_index= taskArray.filter(item=>(
@@ -72,6 +73,15 @@ const Task_display=({EachTask,task,setTask})=>{
            setTask(taskArray)
            setDisplayMarkAsCompletedButton('hide')
         }}>Mark As completed</Button>
+        <Button onClick={()=>{
+          let taskArray=[...task];
+          let filtered=taskArray.filter(item=>(
+            item.taskName!==EachTask.taskName
+          ))
+          setDisplayMarkAsCompletedButton('hide')
+          setTask(filtered)
+        }}>Delete</Button>
+        </Flex>
         </>
       )
     }
