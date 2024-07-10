@@ -1,60 +1,53 @@
 
 
-import { useState } from 'react'
+import { useState} from 'react'
 
 import './App.css'
 
 import {Flex,Input,Button,Grid,Select} from '@chakra-ui/react'
 
+import { useSelector,useDispatch } from 'react-redux'
+import { addTodo,deleteTodo,updateStatus,filterByStatus} from './app/todoSlice'
+
 function App() {
-  const[mainTaskDataHolder,setMainTaskDataHolder]=useState([])
   const[trackInputChange,setTrackInputChange]=useState('')
-  const[task,setTask] = useState([])
+  
+  const task = useSelector((state)=>state.todoSlice.todoHolderForUiRendering);
+  const dispatch = useDispatch()
 
   return (
     <>
+    
       <Flex justify='center' mt={4} gap={2}>
          <Input w='40%' border='1px' placeholder='Enter Task Name' onChange={(event)=>{
             setTrackInputChange(event.target.value)
          }}/>
           <Button bg='black' color='white' _hover={{color:"white"}} onClick={()=>{
-            let existingTask=[...mainTaskDataHolder];
-            existingTask.push({taskName:trackInputChange,status:'pending'});
-            setMainTaskDataHolder(existingTask)
-            setTask(existingTask)
+             dispatch(addTodo({taskName:trackInputChange,status:'pending'}));
+            //setTask(existingTask)
           }}>Add Task</Button>
 
-          <Select variant='filled' placeholder='Filter by Completion Status' w='30%' onChange={(event)=>{
-            if(event.target.value=='Show-Pending-Tasks'){
-              let tasks=[...mainTaskDataHolder];
-              let filtered_BySelect_Value= tasks.filter(item=>(
-                item.status=='pending'
-              ))
-              setTask(filtered_BySelect_Value)
-            }
-            else if(event.target.value=='Show-Completed-Tasks'){
-              let tasks=[...mainTaskDataHolder];
-              let filtered_BySelect_Value = tasks.filter(item=>(
-                item.status=='completed'
-              ))
-              setTask(filtered_BySelect_Value)
-            }
-            else{
-              let tasks=[...mainTaskDataHolder];
-              setTask(tasks)
-            }
-          }}>
-          <option value="show-all">Show All Tasks</option>
-          <option value='Show-Pending-Tasks' style={{color:"#FF6500",fontWeight:"600"}}>Show Pending Tasks</option>
-          <option value='Show-Completed-Tasks' style={{color:"lightseagreen",fontWeight:"600"}}>Show Completed Tasks</option>
-         </Select>
+
+          <Select variant='filled' 
+          placeholder='Filter by Completion Status' w='30%' 
+          onChange={(event)=>{
+            dispatch(filterByStatus(event.target.value))
+           }}>
+          <option value="AllTasks">Show All Tasks</option>
+          <option value='pending' style={{color:"#FF6500",fontWeight:"600"}}>Show Pending Tasks</option>
+          <option value='completed' style={{color:"lightseagreen",fontWeight:"600"}}>Show Completed Tasks</option>
+         </Select> {/**handle filter */}
+
 
       </Flex> {/** this flex holds input for enter task name and add task button */}
 
       <Grid templateColumns='repeat(3,30%)' columnGap={10} mt={10} rowGap={10} justifyContent='center'>
       {
         task.map((EachTask,index)=>(
-          < Task_display key={index} EachTask={EachTask} task={task} setTask={setTask}/>
+          < Task_display
+           deleteTodo={deleteTodo}
+           key={index} EachTask={EachTask}
+          task={task} updateStatus={updateStatus} />
         ))
       }
       </Grid>
@@ -62,9 +55,10 @@ function App() {
   )
 }
 
-const Task_display=({EachTask,task,setTask})=>{
+const Task_display=({EachTask,task,deleteTodo,updateStatus})=>{
 
   const[displayMarkAsCompletedButton,setDisplayMarkAsCompletedButton]=useState('hide')
+  const dispatch = useDispatch()
 
    const parentGrid_style={
     borderRadius:'10px',
@@ -73,6 +67,9 @@ const Task_display=({EachTask,task,setTask})=>{
     p:'20px',
     rowGap:'2px'
    }
+
+
+   
   return(
     <>
     <Grid sx={parentGrid_style} bg={EachTask.status=='pending'?'#FF6500':'lightseagreen'}>
@@ -92,23 +89,12 @@ const Task_display=({EachTask,task,setTask})=>{
         <>
        <p>{EachTask.taskName}</p>
        <Flex gap={3} mt={2}>
-        <Button onClick={()=>{
-           let taskArray=[...task];
-           let desired_index= taskArray.filter(item=>(
-            item.taskName==EachTask.taskName
-           ))
-           desired_index[0].status='completed';
-           setTask(taskArray)
-           setDisplayMarkAsCompletedButton('hide')
-        }}>Mark As completed</Button>
-        <Button onClick={()=>{
-          let taskArray=[...task];
-          let filtered=taskArray.filter(item=>(
-            item.taskName!==EachTask.taskName
-          ))
+        <Button onClick={()=>{ 
           setDisplayMarkAsCompletedButton('hide')
-          setTask(filtered)
-        }}>Delete</Button>
+          dispatch(updateStatus({task:EachTask.taskName}))
+       }} >Mark As completed</Button>
+        
+        <Button onClick={ ()=>{ dispatch(deleteTodo({task:EachTask.taskName})) }}>Delete</Button>
         </Flex>
         </>
       )
